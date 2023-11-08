@@ -28,13 +28,10 @@ const AuthFormContainer: FC<Props> = ({heading, subHeading, initialValues, valid
                 {subHeading}
             </Text>
         </View>
-
         <Form 
-            initialValues={initialValues}
-            validationSchema={validationSchema}
-        >
-             {children}
-        </Form>
+            initialValues={initialValues} 
+            validationSchema={validationSchema} 
+        >{children}</Form>
     </View>
 };
 

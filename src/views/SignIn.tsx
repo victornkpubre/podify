@@ -1,22 +1,15 @@
 import {FC, useState} from 'react';
-import {View, StyleSheet, SafeAreaView} from 'react-native'
-import { PRIMARY } from '@utils/colors'
+import {View, StyleSheet} from 'react-native';
+import { PRIMARY } from '@utils/colors';
 import AuthInputField from '@components/AuthInputField';
 import SubmitButton from '@components/form/SubmitButton';
 import PasswordVisibilityIcon from '@ui/PasswordVisibilityIcon';
-import * as yup from 'yup'
-import { FormikHelpers } from 'formik';
+import * as yup from 'yup';
 import AppLink from '@ui/AppLink';
 import AuthFormContainer from '@components/AuthFormContainer';
 
 
-
-const signUpSchema = yup.object({
-    name: yup
-        .string()
-        .trim("Invalid Input")
-        .min(3, "Invlaid name")
-        .required("Name is required"),
+const SignInSchema = yup.object({
     email: yup
         .string()
         .trim("Email is required")
@@ -26,25 +19,19 @@ const signUpSchema = yup.object({
         .string()
         .trim("Password is required")
         .min(8, "Password is too short!")
-        .matches(/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#\$%\^&\*])[a-zA-Z\d!@#\$%\^&\*]+$/, 'Password is too simple!')
         .required("Password is required!")
 })
 
 const initialValues = {
-    name: "",
     email: "",
     password: ""
 }
 
-type NewUser = {
-    name: "",
-    email: "",
-    password: ""
-}
+
 
 interface Props {}
 
-const SignUp: FC<Props> = props => {
+const SignIn: FC<Props> = props => {
     const [secureEntry, setSecureEntry] = useState(true)
 
     const togglePasswordView = () => {
@@ -53,18 +40,12 @@ const SignUp: FC<Props> = props => {
 
 
     return <AuthFormContainer
-        heading='Welcome'
-        subHeading="Let's get started by creating your account"
+        heading='Welcome back'
+        subHeading="Let's log in your account"
         initialValues={initialValues}
-        validationSchema={signUpSchema}
+        validationSchema={SignInSchema}
     >
         <View style={styles.formContainer}>
-            <AuthInputField
-                name= 'name'
-                placeholder='John Doe'
-                label='Name'
-                containerStyle={styles.marginBottom}
-            />
             <AuthInputField
                 name='email'
                 placeholder='john@email.com'
@@ -126,4 +107,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default SignUp;
+export default SignIn;

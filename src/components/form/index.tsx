@@ -11,16 +11,17 @@ interface Props<T> {
 }
 
 const Form = <T extends Object>(props: Props<T>) => {
-   const {initialValues, validationSchema, children} = props
+   const {initialValues, validationSchema, children} = props;
     return <Formik 
         initialValues={initialValues} 
-        validationSchema={validationSchema}
+        validationSchema={validationSchema} 
         onSubmit={(values) => {
             console.log(values)
-        }
-    }>
-        {children}
-    </Formik>
+        }}>
+            {children}
+        </Formik>
+
+
 };
 
 const styles = StyleSheet.create({
