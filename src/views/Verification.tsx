@@ -7,6 +7,7 @@ import SubmitButton from '@components/form/SubmitButton';
 import AppLink from '@ui/AppLink';
 import AuthFormContainer from '@components/AuthFormContainer';
 import OTPField from '@ui/OTPField';
+import AppButton from '@ui/AppButton';
 
 const verificationSchema = yup.object({
     email: yup
@@ -31,8 +32,6 @@ const Verification: FC<Props> = (props) => {
     return <AuthFormContainer
         heading='Forgot Password!'
         subHeading="Oops, did you forget your password? Don't worry, we'll help"
-        initialValues={initialValues}
-        validationSchema={verificationSchema}
     >
         <View style={styles.formContainer}>
             <View style={styles.inputContainer}>
@@ -41,7 +40,7 @@ const Verification: FC<Props> = (props) => {
                 })}
             </View>
 
-            <SubmitButton title='Submit'/>
+            <AppButton title='Submit' />
 
             <View style={styles.linkContainer}>
                 <AppLink

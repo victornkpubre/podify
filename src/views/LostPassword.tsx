@@ -6,8 +6,9 @@ import * as yup from 'yup'
 import SubmitButton from '@components/form/SubmitButton';
 import AppLink from '@ui/AppLink';
 import AuthFormContainer from '@components/AuthFormContainer';
+import Form from '@components/form';
 
-const LostPasswordSchema = yup.object({
+const lostPasswordSchema = yup.object({
     email: yup
         .string()
         .trim("Email is required")
@@ -24,40 +25,46 @@ interface Props {}
 
 const LostPassword: FC<Props> = props => {
 
-    return <AuthFormContainer
-        heading='Forgot Password!'
-        subHeading="Oops, did you forget your password? Don't worry, we'll help"
+    return <Form 
         initialValues={initialValues}
-        validationSchema={LostPasswordSchema}
+        validationSchema={lostPasswordSchema}
+        onSubmit={(values) => {
+            console.log(values)
+        }}
     >
-        <View style={styles.formContainer}>
-            <AuthInputField
-                name='email'
-                placeholder='john@email.com'
-                label='Email'
-                keyboardType='email-address'
-                autoCapitalize='none'
-                containerStyle={styles.marginBottom}
-            />
-
-            <SubmitButton title='Sign In' />
-
-            <View style={styles.linkContainer}>
-                <AppLink 
-                    title='I Lost my Password'
-                    onPress={() => {
-                        
-                    }}
+        <AuthFormContainer
+            heading='Forgot Password!'
+            subHeading="Oops, did you forget your password? Don't worry, we'll help"
+        >
+            <View style={styles.formContainer}>
+                <AuthInputField
+                    name='email'
+                    placeholder='john@email.com'
+                    label='Email'
+                    keyboardType='email-address'
+                    autoCapitalize='none'
+                    containerStyle={styles.marginBottom}
                 />
-                <AppLink 
-                    title='Sign Up'
-                    onPress={() => {
 
-                    }}
-                />
+                <SubmitButton title='Sign In' />
+
+                <View style={styles.linkContainer}>
+                    <AppLink 
+                        title='I Lost my Password'
+                        onPress={() => {
+                            
+                        }}
+                    />
+                    <AppLink 
+                        title='Sign Up'
+                        onPress={() => {
+
+                        }}
+                    />
+                </View>
             </View>
-        </View>
-    </AuthFormContainer>
+        </AuthFormContainer>
+    </Form>
 };
 
 const styles = StyleSheet.create({

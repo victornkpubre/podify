@@ -8,6 +8,7 @@ import * as yup from 'yup'
 import { FormikHelpers } from 'formik';
 import AppLink from '@ui/AppLink';
 import AuthFormContainer from '@components/AuthFormContainer';
+import Form from '@components/form';
 
 
 
@@ -52,55 +53,62 @@ const SignUp: FC<Props> = props => {
     }
 
 
-    return <AuthFormContainer
-        heading='Welcome'
-        subHeading="Let's get started by creating your account"
+    return <Form 
         initialValues={initialValues}
         validationSchema={signUpSchema}
+        onSubmit={(values) => {
+            console.log(values)
+        }}
     >
-        <View style={styles.formContainer}>
-            <AuthInputField
-                name= 'name'
-                placeholder='John Doe'
-                label='Name'
-                containerStyle={styles.marginBottom}
-            />
-            <AuthInputField
-                name='email'
-                placeholder='john@email.com'
-                label='Email'
-                keyboardType='email-address'
-                autoCapitalize='none'
-                containerStyle={styles.marginBottom}
-            />
-            <AuthInputField
-                name="password"
-                placeholder='**********'
-                label='Password'
-                autoCapitalize='none'
-                secureTextEntry={secureEntry}
-                containerStyle={styles.marginBottom}
-                rightIcon={<PasswordVisibilityIcon privateIcon={secureEntry} />}
-                onRightIconPress={togglePasswordView}
-            />
-            <View  style={{height:16}}/>
-
-            <SubmitButton title='Sign Up' />
-
-            <View style={styles.linkContainer}>
-                <AppLink 
-                    title='I Lost my Password'
-                    onPress={() => {
-                    }}
+        <AuthFormContainer
+            heading='Welcome'
+            subHeading="Let's get started by creating your account"
+        >
+            <View style={styles.formContainer}>
+                <AuthInputField
+                    name= 'name'
+                    placeholder='John Doe'
+                    label='Name'
+                    containerStyle={styles.marginBottom}
                 />
-                <AppLink 
-                    title='Sign In'
-                    onPress={() => {
-                    }}
+                <AuthInputField
+                    name='email'
+                    placeholder='john@email.com'
+                    label='Email'
+                    keyboardType='email-address'
+                    autoCapitalize='none'
+                    containerStyle={styles.marginBottom}
+                    
                 />
+                <AuthInputField
+                    name="password"
+                    placeholder='**********'
+                    label='Password'
+                    autoCapitalize='none'
+                    secureTextEntry={secureEntry}
+                    containerStyle={styles.marginBottom}
+                    rightIcon={<PasswordVisibilityIcon privateIcon={secureEntry} />}
+                    onRightIconPress={togglePasswordView}
+                />
+                <View  style={{height:16}}/>
+
+                <SubmitButton title='Sign Up' />
+
+                <View style={styles.linkContainer}>
+                    <AppLink 
+                        title='I Lost my Password'
+                        onPress={() => {
+                        }}
+                    />
+                    <AppLink 
+                        title='Sign In'
+                        onPress={() => {
+                        }}
+                    />
+                </View>
             </View>
-        </View>
-    </AuthFormContainer>
+        </AuthFormContainer>
+    </Form>
 };
 
 const styles = StyleSheet.create({

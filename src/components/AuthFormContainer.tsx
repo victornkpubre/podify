@@ -2,18 +2,15 @@ import CircleUI from '@ui/CircleUI';
 import {FC, ReactNode} from 'react';
 import {View, StyleSheet, Image, Text} from 'react-native'
 import { CONTRAST, SECONDARY } from '@utils/colors';
-import Form from './form';
 
 
 interface Props {
     children: ReactNode
     heading?: string
     subHeading?: string
-    initialValues: {}
-    validationSchema: any
 }
 
-const AuthFormContainer: FC<Props> = ({heading, subHeading, initialValues, validationSchema, children}) => {
+const AuthFormContainer: FC<Props> = ({heading, subHeading, children}) => {
 
     return <View style={styles.container}>
         <CircleUI size={300} position='top-left'/>
@@ -21,17 +18,18 @@ const AuthFormContainer: FC<Props> = ({heading, subHeading, initialValues, valid
         <CircleUI size={200} position='bottom-left'/>
         <CircleUI size={300} position='bottom-right'/>
 
-        <View style={{width: '100%', marginBottom:20}}>
+        <View style={styles.headerContainer}>
             <Image source={require('../../assets/logo.png')} />
             <Text style={styles.heading}>{heading}</Text>
             <Text style={styles.subHeading}>
                 {subHeading}
             </Text>
         </View>
-        <Form 
+        {children}
+        {/* <Form 
             initialValues={initialValues} 
             validationSchema={validationSchema} 
-        >{children}</Form>
+        >{children}</Form> */}
     </View>
 };
 
@@ -49,6 +47,7 @@ const styles = StyleSheet.create({
         paddingVertical: 5
     },
     subHeading: {color: CONTRAST, fontSize: 16},
+    headerContainer: {width: '100%', marginBottom:20}
 });
 
 export default AuthFormContainer;

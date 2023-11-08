@@ -7,6 +7,7 @@ import PasswordVisibilityIcon from '@ui/PasswordVisibilityIcon';
 import * as yup from 'yup';
 import AppLink from '@ui/AppLink';
 import AuthFormContainer from '@components/AuthFormContainer';
+import Form from '@components/form';
 
 
 const SignInSchema = yup.object({
@@ -39,49 +40,56 @@ const SignIn: FC<Props> = props => {
     }
 
 
-    return <AuthFormContainer
-        heading='Welcome back'
-        subHeading="Let's log in your account"
+    return <Form 
         initialValues={initialValues}
         validationSchema={SignInSchema}
-    >
-        <View style={styles.formContainer}>
-            <AuthInputField
-                name='email'
-                placeholder='john@email.com'
-                label='Email'
-                keyboardType='email-address'
-                autoCapitalize='none'
-                containerStyle={styles.marginBottom}
-            />
-            <AuthInputField
-                name="password"
-                placeholder='**********'
-                label='Password'
-                autoCapitalize='none'
-                secureTextEntry={secureEntry}
-                containerStyle={styles.marginBottom}
-                rightIcon={<PasswordVisibilityIcon privateIcon={secureEntry} />}
-                onRightIconPress={togglePasswordView}
-            />
-            <View  style={{height:16}}/>
-
-            <SubmitButton title='Sign Up' />
-
-            <View style={styles.linkContainer}>
-                <AppLink 
-                    title='I Lost my Password'
-                    onPress={() => {
-                    }}
+        onSubmit={(values) => {
+            console.log(values)
+        }}
+    > 
+        <AuthFormContainer
+            heading='Welcome back'
+            subHeading="Let's log in your account"
+        >
+            <View style={styles.formContainer}>
+                <AuthInputField
+                    name='email'
+                    placeholder='john@email.com'
+                    label='Email'
+                    keyboardType='email-address'
+                    autoCapitalize='none'
+                    containerStyle={styles.marginBottom}
                 />
-                <AppLink 
-                    title='Sign In'
-                    onPress={() => {
-                    }}
+                <AuthInputField
+                    name="password"
+                    placeholder='**********'
+                    label='Password'
+                    autoCapitalize='none'
+                    secureTextEntry={secureEntry}
+                    containerStyle={styles.marginBottom}
+                    rightIcon={<PasswordVisibilityIcon privateIcon={secureEntry} />}
+                    onRightIconPress={togglePasswordView}
                 />
+                <View  style={{height:16}}/>
+
+                <SubmitButton title='Sign In' />
+
+                <View style={styles.linkContainer}>
+                    <AppLink 
+                        title='I Lost my Password'
+                        onPress={() => {
+                        }}
+                    />
+                    <AppLink 
+                        title='Sign Up'
+                        onPress={() => {
+                        }}
+                    />
+                </View>
             </View>
-        </View>
-    </AuthFormContainer>
+        </AuthFormContainer>
+    </Form>
+    
 };
 
 const styles = StyleSheet.create({
