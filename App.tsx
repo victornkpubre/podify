@@ -1,13 +1,17 @@
+import { NavigationContainer } from "@react-navigation/native"
+import AuthNavigator from "@src/navigation/AuthNavigator"
 import { PRIMARY } from "@utils/colors"
-import LostPassword from "@views/LostPassword"
-import SignIn from "@views/SignIn"
-import SignUp from "@views/SignUp"
-import Verification from "@views/Verification"
+import LostPassword from "@views/auth/LostPassword"
+import SignIn from "@views/auth/SignIn"
+import SignUp from "@views/auth/SignUp"
+import Verification from "@views/auth/Verification"
 import { SafeAreaView, StyleSheet } from "react-native"
 
 const App = () => {
-  return <SafeAreaView style={styles.container}>
-    <Verification/>
+  return <SafeAreaView>
+    <NavigationContainer>
+      <AuthNavigator/>
+    </NavigationContainer>
   </SafeAreaView>
 }
 

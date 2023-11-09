@@ -9,6 +9,8 @@ import { FormikHelpers } from 'formik';
 import AppLink from '@ui/AppLink';
 import AuthFormContainer from '@components/AuthFormContainer';
 import Form from '@components/form';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { AuthStackParamList } from '@src/@types/navigation';
 
 
 
@@ -47,6 +49,7 @@ interface Props {}
 
 const SignUp: FC<Props> = props => {
     const [secureEntry, setSecureEntry] = useState(true)
+    const navigation = useNavigation<NavigationProp<AuthStackParamList>>()
 
     const togglePasswordView = () => {
         setSecureEntry(!secureEntry)
@@ -98,11 +101,13 @@ const SignUp: FC<Props> = props => {
                     <AppLink 
                         title='I Lost my Password'
                         onPress={() => {
+                            navigation.navigate("LostPassword")
                         }}
                     />
                     <AppLink 
                         title='Sign In'
                         onPress={() => {
+                            navigation.navigate("SignIn")
                         }}
                     />
                 </View>

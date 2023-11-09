@@ -34,19 +34,19 @@ const Verification: FC<Props> = (props) => {
         subHeading="Oops, did you forget your password? Don't worry, we'll help"
     >
         <View style={styles.formContainer}>
-            <View style={styles.inputContainer}>
+            {/* <View style={styles.inputContainer}>
                 {otpFields.map((_, index) => {
                     return <OTPField key={index} placeholder='*'/>
                 })}
-            </View>
+            </View> */}
 
-            <AppButton title='Submit' />
+            <AppButton title='Submit'/>
 
             <View style={styles.linkContainer}>
                 <AppLink
                     title='Re-send OTP'
                     onPress={() => {
-
+                        
                     }}
                 />
             </View>

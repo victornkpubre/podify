@@ -8,6 +8,8 @@ import * as yup from 'yup';
 import AppLink from '@ui/AppLink';
 import AuthFormContainer from '@components/AuthFormContainer';
 import Form from '@components/form';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { AuthStackParamList } from '@src/@types/navigation';
 
 
 const SignInSchema = yup.object({
@@ -34,6 +36,7 @@ interface Props {}
 
 const SignIn: FC<Props> = props => {
     const [secureEntry, setSecureEntry] = useState(true)
+    const navigation = useNavigation<NavigationProp<AuthStackParamList>>()
 
     const togglePasswordView = () => {
         setSecureEntry(!secureEntry)
@@ -46,7 +49,7 @@ const SignIn: FC<Props> = props => {
         onSubmit={(values) => {
             console.log(values)
         }}
-    > 
+    >
         <AuthFormContainer
             heading='Welcome back'
             subHeading="Let's log in your account"
@@ -78,11 +81,13 @@ const SignIn: FC<Props> = props => {
                     <AppLink 
                         title='I Lost my Password'
                         onPress={() => {
+                            navigation.navigate("LostPassword")
                         }}
                     />
                     <AppLink 
                         title='Sign Up'
                         onPress={() => {
+                            navigation.navigate("SignUp")
                         }}
                     />
                 </View>
